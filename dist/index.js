@@ -16252,7 +16252,7 @@ const {
 	SHA,
 	USER,
 	REPOSITORY,
-	REF,
+	BRANCH,
 	TRIM_COMMIT_MESSAGE,
 	BUILD_ENV,
 	ENV,
@@ -16299,7 +16299,7 @@ const init = () => {
 				`githubCommitMessage=${ TRIM_COMMIT_MESSAGE ? commit.commitMessage.split(/\r?\n/)[0] : commit.commitMessage }`,
 				`githubCommitOrg=${ USER }`,
 				`githubCommitRepo=${ REPOSITORY }`,
-				`githubCommitRef=${ REF }`,
+				`githubCommitRef=${ BRANCH }`,
 				`githubCommitSha=${ SHA }`,
 				`githubOrg=${ USER }`,
 				`githubRepo=${ REPOSITORY }`,
@@ -16370,6 +16370,7 @@ const init = () => {
 module.exports = {
 	init
 }
+
 
 /***/ }),
 
@@ -16604,7 +16605,7 @@ const run = async () => {
 		const body = `
 			Refusing to deploy this Pull Request to Vercel because it originates from @${ ACTOR }'s fork.
 
-			**@${ USER }** To allow this behaviour set \`DEPLOY_PR_FROM_FORK\` to true ([more info](https://github.com/BetaHuhn/deploy-to-vercel-action#deploying-a-pr-made-from-a-fork-or-dependabot)).
+			**@${ USER }** To allow this behaviour set \`DEPLOY_PR_FROM_FORK\` to true ([more info](https://github.com/hardpixel/deploy-to-vercel-action#deploying-a-pr-made-from-a-fork-or-dependabot)).
 		`
 
 		const comment = await github.createComment(body)
@@ -16771,6 +16772,7 @@ run()
 		core.error('ERROR')
 		core.setFailed(err.message)
 	})
+
 })();
 
 module.exports = __webpack_exports__;

@@ -15983,6 +15983,9 @@ const context = {
 		type: 'boolean',
 		default: false
 	}),
+	TARGET: parser.getInput({
+		key: 'TARGET'
+	}),
 	RUNNING_LOCAL: process.env.RUNNING_LOCAL === 'true',
 	FORCE: parser.getInput({
 		key: 'FORCE',
@@ -16254,6 +16257,7 @@ const {
 	BUILD_ENV,
 	ENV,
 	PREBUILT,
+	TARGET,
 	WORKING_DIRECTORY,
 	FORCE
 } = __nccwpck_require__(4570)
@@ -16278,6 +16282,10 @@ const init = () => {
 
 		if (PREBUILT) {
 			commandArguments.push('--prebuilt')
+		}
+
+		if (TARGET) {
+			commandArguments.push(`--target=${ TARGET }`)
 		}
 
 		if (FORCE) {

@@ -16,6 +16,7 @@ const {
 	BUILD_ENV,
 	ENV,
 	PREBUILT,
+	TARGET,
 	WORKING_DIRECTORY,
 	FORCE
 } = require('./config')
@@ -40,6 +41,10 @@ const init = () => {
 
 		if (PREBUILT) {
 			commandArguments.push('--prebuilt')
+		}
+
+		if (TARGET) {
+			commandArguments.push(`--target=${ TARGET }`)
 		}
 
 		if (FORCE) {
